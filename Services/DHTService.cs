@@ -65,6 +65,51 @@ namespace Jarvis_Brain.Services
 
             return dhtPackage;
         }
+        public DHTCollection GetLowestHighestTemperatureIn24Hours(string locationName)
+        {
+            var returnableCollection = new DHTCollection(){
+                MaxMinTemps = new Dictionary<string, float>(),
+                InternalComms = new InternalComms(){
+                    Name = "GetLowestHighestTemperatureIn24Hours",
+                    Received = DateTime.Now,
+                    State = StateEnum.Sent,
+                    Message = "Lowest and highest temperatures in the last 24 hours from the " + locationName
+                }
+            };
+            MySqlConnection connection = new MySqlConnection(mysqlConnection);
+            connection.Open();
+            try
+            {
+                MySqlCommand cmd = connection.CreateCommand();
+                cmd.CommandText = "SELECT MIN(Temperature) as minTemp, MAX(Temperature) as maxTemp FROM DHT11 WHERE Location = '" + locationName + "' AND Received >= now() - INTERVAL 1 DAY";
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    returnableCollection.MaxMinTemps.Add("min", float.Parse(reader["minTemp"].ToString()));
+                    returnableCollection.MaxMinTemps.Add("max", float.Parse(reader["maxTemp"].ToString()));
+                }
+
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+
+                return returnableCollection;
+            }
+            catch (Exception ex)
+            {
+                errorLog.WriteToErrorLog(ex.Message);
+                returnableCollection.InternalComms = new InternalComms(){
+                    Name = "GetLowestHighestTemperatureIn24Hours",
+                    Received = DateTime.Now,
+                    State = StateEnum.Error,
+                    Message = string.Format(ex.Message),
+                    ErrorType = ErrorType.Unknown
+                };
+                return returnableCollection;
+            }
+        }
 
         public DHTCollection GetLast7DaysDHTPackage(string locationName)
         {
@@ -73,8 +118,8 @@ namespace Jarvis_Brain.Services
                 InternalComms = new InternalComms(){
                     Name = "GetLast7DaysDHTPackage",
                     Received = DateTime.Now,
-                    State = StateEnum.Received,
-                    Message = "Succesfully collected Last 7 Days from the " + locationName
+                    State = StateEnum.Sent,
+                    Message = "Last 7 Days from the " + locationName
                 }
             };
 

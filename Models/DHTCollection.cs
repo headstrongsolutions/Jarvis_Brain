@@ -9,5 +9,7 @@ namespace Jarvis_Brain.Models
         public ErrorLog ErrorLog { get; set; }
 
         public List<DHTPackage> DHTPackages { get; set; }
+
+        public Dictionary<string, float> MaxMinTemps { get; set; }
     }
 }

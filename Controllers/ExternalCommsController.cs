@@ -48,9 +48,6 @@ namespace Jarvis_Brain.Controllers
             try
             {
                 DHTCollection dhtCollection = new DHTService().GetLast7DaysDHTPackage(locationName);
-                dhtCollection.ErrorLog = new ErrorLog(){
-                    Location = "Get with locationName parameter"
-                };
                 return new RawJsonActionResult(JsonConvert.SerializeObject(dhtCollection));
             }
             catch (Exception ex)
@@ -60,5 +57,21 @@ namespace Jarvis_Brain.Controllers
             return null;
         }
 
+        [HttpGet]
+        [Route("ExternalComms/GetLowestHighestTemperatureIn24Hours/{locationName}")]
+        public IHttpActionResult GetLowestHighestTemperatureIn24Hours(string locationName)
+        {
+            try
+            {
+                var dhtService = new DHTService();
+                DHTCollection minMaxTemps = dhtService.GetLowestHighestTemperatureIn24Hours(locationName);
+                return new RawJsonActionResult(JsonConvert.SerializeObject(minMaxTemps));
+            }
+            catch (Exception ex)
+            {
+                errorLog.WriteToErrorLog(ex.Message);
+            }
+            return null;
+        }
     }
 }

@@ -7,5 +7,11 @@ namespace Jarvis_Brain.Services
         int SaveDHTRecord(DHTPackage dhtPackage);
 
         DHTPackage GetLatestDHTPackage();
+
+        DHTCollection GetLast7DaysDHTPackage();
+
+        DHTCollection GetLast7DaysDHTPackage(string locationName);
+
+        DHTCollection GetLowestHighestTemperatureIn24Hours(string locationName);
     }
 }
