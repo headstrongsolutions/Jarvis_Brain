@@ -8,7 +8,7 @@ namespace Jarvis_Brain.Services
 
         DHTPackage GetLatestDHTPackage();
 
-        DHTCollection GetLast7DaysDHTPackage();
+        //DHTCollection GetLast7DaysDHTPackage();
 
         DHTCollection GetLast7DaysDHTPackage(string locationName);
 
