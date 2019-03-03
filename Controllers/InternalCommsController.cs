@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Jarvis_Brain.Controllers
 {
-    [EnableCors("GerdenTemperatureSensorHost")]
     public class InternalCommsController : BaseController
     {
         private readonly IDHTService _dhtService;

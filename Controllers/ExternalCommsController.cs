@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Jarvis_Brain.Services;
 using Jarvis_Brain.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace Jarvis_Brain.Controllers
 {
-    
     public class ExternalCommsController : BaseController
     {
         private readonly IDHTService _dhtService;

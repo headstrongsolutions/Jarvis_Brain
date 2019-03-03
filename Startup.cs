@@ -24,6 +24,11 @@ namespace Jarvis_Brain
         public IConfigurationRoot Configuration { get; set; }
 
         /// <summary>
+        /// Binding for specified allowed origins string
+        /// </summary>
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+        /// <summary>
         /// Startup constructor
         /// </summary>
         /// <Description>
@@ -61,12 +66,15 @@ namespace Jarvis_Brain
             services.AddScoped<IDHTService, DHTService>();
 
             // CORS policies
-            services.AddCors(o => o.AddPolicy("GardenTemperatureSensorHost", builder =>
+            services.AddCors(options =>
             {
-                builder.WithOrigins(Configuration["GardenTemperatureSensorHost"])
-                       .AllowAnyMethod()
-                       .AllowAnyHeader();
-            }));
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://headstrong.solutions",
+                                        "http://webserver");
+                });
+            });
 
             // Finally, run up the MVC framework
             services.AddMvc().AddJsonOptions(options =>
@@ -120,6 +128,7 @@ namespace Jarvis_Brain
             //        name: "default",
             //        template: "{controller=Home}/{action=Index}/{id?}");
             //});
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseMvcWithDefaultRoute();
         }
     }
