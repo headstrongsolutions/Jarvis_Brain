@@ -3,6 +3,9 @@ using Jarvis_Brain.Code;
 
 namespace Jarvis_Brain.Models
 {
+    /// <summary>
+    /// Internal Comms EF Model
+    /// </summary>
     public class InternalComms
     {
         public string Name { get; set; }

@@ -1,0 +1,12 @@
+@{
+    var controllerActions = new Dictionary<string,string>();
+    if ((Dictionary<string,string>)ViewBag.controllerActions != null){
+        controllerActions = ViewBag.controllerActions;
+    }
+    if(controllerActions != null && controllerActions.Count > 0){
+        foreach(var controllerAction in controllerActions) {
+            <p>Action: @controllerAction.Key</p>
+            <p>@controllerAction.Value</p>
+        }
+    }
+}

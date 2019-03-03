@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28531.58
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarvis_Brain", "Jarvis_Brain.csproj", "{8567CD3F-9D4F-4CAF-A2A9-BCDE1F416BAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarvis_Brain", "Jarvis_Brain.csproj", "{19EB7FEB-2C84-4B38-9924-2C98DE0F28CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8567CD3F-9D4F-4CAF-A2A9-BCDE1F416BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8567CD3F-9D4F-4CAF-A2A9-BCDE1F416BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8567CD3F-9D4F-4CAF-A2A9-BCDE1F416BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8567CD3F-9D4F-4CAF-A2A9-BCDE1F416BAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19EB7FEB-2C84-4B38-9924-2C98DE0F28CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19EB7FEB-2C84-4B38-9924-2C98DE0F28CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19EB7FEB-2C84-4B38-9924-2C98DE0F28CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19EB7FEB-2C84-4B38-9924-2C98DE0F28CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20BB4E89-9B15-40EC-AE48-4768070E3356}
 	EndGlobalSection
 EndGlobal

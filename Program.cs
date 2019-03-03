@@ -1,39 +1,34 @@
-﻿using System;
-using System.Net.Http;
-using Microsoft.Owin.Hosting;
-using System.Configuration;
-using Jarvis_Brain.Code;
+﻿using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace Jarvis_Brain
 {
-    class Program
+    /// <summary>
+    /// Entry point for the application
+    /// </summary>
+    public class Program
     {
-        static void Main()
+        /// <summary>
+        /// Raises the CreateWebHostBuilder method 
+        /// </summary>
+        /// <param name="args"></param>
+        public static void Main(string[] args)
         {
-            ErrorFileLogger errorLog = new ErrorFileLogger("Main()");
-            try
-            {
-                string baseAddress = ConfigurationManager.AppSettings.Get("BaseAddress");
-                if (!string.IsNullOrEmpty(baseAddress))
-                {
-                    using (WebApp.Start<Startup>(url: baseAddress))
-                    {
-                        Console.WriteLine("Server Started:");
-                        Console.WriteLine("Press Enter to quit.");
-                        Console.ReadKey();
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Base Address is null or empty, check App.Config");
-                    Console.WriteLine("Press Enter to quit.");
-                    throw new System.Exception("Base Address is null or empty, check App.Config");
-                }
-            }
-            catch(Exception ex)
-            {
-                errorLog.WriteToErrorLog(ex.Message);
-            }
+            // This awesomeness allows incoming CLI parameters to add to the startup process
+            // e.g. dotnet <applicationName>.dll --server.urls "http://*:5002"
+            var config = new ConfigurationBuilder()
+            .AddCommandLine(args)
+            .Build();
+
+            var host = new WebHostBuilder()
+                .UseConfiguration(config)
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseStartup<Startup>()
+                .Build();
+                host.Run();
         }
     }
 }

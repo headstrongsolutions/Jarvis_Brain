@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Internal Api";
+}
+
+<div class="">
+    <h1 class="display-4">
+        Internal API
+    </h1>
+    <p>Jarvis needs to 'talk' to many things, some inside the network and some outside to the greater internet.</p>
+    <p>This API endpoint is available only to whitelisted addresses and services inside the Jarvis network to enable services such as internal screen updates for temperature, door alerts and light switches.</p>
+    <p>These are the current endpoint methods available:</p>
+    @await Html.PartialAsync("_ControllerActions")
+</div>

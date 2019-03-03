@@ -1,17 +1,19 @@
 ﻿using Jarvis_Brain.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Jarvis_Brain.Services
 {
     public interface IDHTService
     {
-        int SaveDHTRecord(DHTPackage dhtPackage);
+        int SaveDHTRecord(DhtPackages dhtPackage);
 
-        DHTPackage GetLatestDHTPackage();
+        IQueryable<DhtPackages> GetLatestDHTPackage(string locationName);
 
-        //DHTCollection GetLast7DaysDHTPackage();
+        IQueryable<DhtPackages> GetLast7DaysDHTPackage(string locationName);
 
-        DHTCollection GetLast7DaysDHTPackage(string locationName);
+        IQueryable<DhtPackages> GetLowestHighestTemperatureIn24Hours(string locationName);
 
-        DHTCollection GetLowestHighestTemperatureIn24Hours(string locationName);
+        IQueryable<DhtPackages> AllTemperatures();
     }
 }
